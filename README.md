@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tugas Projek Rekayasa Website
+> Website CRUD sederhana.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Framework
 
-## About Laravel
+Framework yang digunakan untuk mengembangkan website ini adalah
+Laravel, Inertia, Vue
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Fitur
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Website ini memiliki fitur:
+-    `Add Book` untuk menambahkan data buku
+-    `Edit` untuk mengedit data buku yang diinginkan
+-    `Delete` untuk menghapus data buku yang diinginkan
+-    `Delete All Data` untuk menghapus semua data buku
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Requirments
 
-## Learning Laravel
+-   php (min 8.1.2)
+-   composer
+-   node.js
+-   mysql
+-   apache
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## How to install
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Clone repository `https://github.com/meeyow02/projek-rekweb.git`
+2. Setup database mysql
+    - Jika menggunakan xampp pastikan untuk membuat database dengan nama `projek_rekweb` dan
+   konfigurasi `username` dan `password` untuk databasenya.
+3. Buka folder yang sudah di clone, bukalah terminal dan jalankan `composer install`
+4. copy file `env.example` ke `.env`
+5. isi data di file `env` dengan bagian awal `DB_` dengan data yang sesuai
+6. jalankan `php artisan key:generate`
+7. jalankan `php artisan migrate`
+8. Jalankan `npm run dev` dan `php artisan serve` di terminal yang berbeda
+9. Bukalah website sesuai dengan url
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## How to use
 
-## Laravel Sponsors
+Pada tahap ini, website sudah bisa diakses. Namun halaman masih kosong untuk menambah data ada beberapa cara yang dapat dilakukan:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Menggunakan data dummy (sebanyak 10 data), jalankan perintah `php artisan db:seed` di terminal, maka data akan terisi secara otomatis.
+2. Menambah data secara manual dengan menggunakan fitur `Add Book`
 
-### Premium Partners
+## Hosting on VM
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Di folder projek-laravel jalankan perintah `npm run build`
+2. Jika menyimpan folder projek-laravel yang telah diclone pada folder root `/var/www/html`, maka langsung saja menjalankan perintah `sudo service apache2 start`
+3. Jika menyimpan folder projek-laravel yang telah diclone bukan pada folder root `/var/www/html`, maka ikuti instruksi berikut:
+   - Rename folder `html` menjadi `oldhtml` yang ada pada folder `/var/www/`. Gunakan perintah `sudo mv html oldhtml`
+   - Buat folder `html` yang mengarah pada folder projek-rekweb. Gunakan perintah `sudo ln -s /path/ke/projek-rekweb/public html
+   - Tambahkan konfigurasi baru `sites-enabled` pada folder `/etc/apache2/sites-enabled`. Pertama, buat file nama_file.conf pada folder `sites-available` dengan menggunakan perintah `sudo cp 000-default.conf /etc/apache2/sites-available/nama_file.conf`.
+   - Kedua, pada folder `/etc/apache2/sites-enabled`, gunakan perintah `sudo ln -s /etc/apache2/sites-available/nama_file.conf nama_file.conf`. Konfigurasi `nama_file.conf` dengan mengarahkan `DocumentRoot`ke `/path/ke/projek-rekweb/public`. Juga pada bagian `<Directory "/path/ke/projek-rekweb"> ... </Directory>`.
+   - Jalankan perintah `sudo a2enmod rewrite` dan `sudo service apache2 restart`
+4. Copy ip address pada broswer untuk menjalankan website yang telah dihosting di VM (ip addresss bisa dilihat dengan menggunakan perintah `ip addr`)
